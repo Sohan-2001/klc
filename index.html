@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Karfa Luggage Centre</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --travel-navy: #1e3a5f;        /* Deep navy for a professional tone */
+      --travel-blue: #2c5aa0;        /* Bright blue for vibrancy */
+      --travel-silver: #c0c7d0;      /* Metallic silver for a modern feel */
+      --travel-gold: #d4af37;        /* Gold for a touch of luxury */
+      --travel-white: #ffffff;       /* White for clarity */
+      --travel-dark: #0f1419;        /* Dark for depth */
+      --shadow-soft: rgba(0, 0, 0, 0.1);  
+      --shadow-strong: rgba(0, 0, 0, 0.3);
+      --travel-tan: #d2b48c;         /* Warm tan to mimic luggage leather */
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      color: var(--travel-white);
+      padding: 5vw;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 20%),  /* Spotlight effect */
+        radial-gradient(circle at 80% 70%, rgba(44, 90, 160, 0.2) 0%, transparent 20%),  /* Multiple spotlights */
+        radial-gradient(circle at 50% 50%, rgba(192, 199, 208, 0.15) 0%, transparent 15%), 
+        linear-gradient(to bottom, transparent 80%, var(--travel-dark) 100%),           /* Floor shadow */
+        linear-gradient(135deg, var(--travel-dark) 0%, var(--travel-navy) 25%, var(--travel-dark) 50%, var(--travel-blue) 75%, var(--travel-dark) 100%); /* Main gradient */
+      background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 200% 200%;
+      animation: luxuryFlow 20s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: 
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 100px,
+          rgba(210, 180, 140, 0.05) 100px,
+          rgba(210, 180, 140, 0.05) 102px
+        ); /* Subtle stitching pattern */
+      pointer-events: none;
+    }
+
+    @keyframes luxuryFlow {
+      0%, 100% { 
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 50%; 
+        filter: brightness(1);
+      }
+      25% { 
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 25% 25%; 
+        filter: brightness(1.05);
+      }
+      50% { 
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 100% 50%; 
+        filter: brightness(1);
+      }
+      75% { 
+        background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 75% 75%; 
+        filter: brightness(1.05);
+      }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 8rem);
+      font-weight: 700;
+      margin-bottom: 2vh;
+      background: linear-gradient(135deg, var(--travel-gold) 0%, var(--travel-silver) 50%, var(--travel-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+      letter-spacing: -0.02em;
+      animation: titleGlow 4s ease-in-out infinite alternate;
+    }
+
+    @keyframes titleGlow {
+      0% { 
+        filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+        transform: translateY(0);
+      }
+      100% { 
+        filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6));
+        transform: translateY(-2px);
+      }
+    }
+
+    p {
+      font-size: clamp(1.2rem, 4vw, 2.5rem);
+      margin-bottom: 6vh;
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: var(--travel-silver);
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+      opacity: 0.9;
+    }
+
+    button {
+      padding: clamp(12px, 2.5vw, 20px) clamp(40px, 6vw, 60px);
+      font-size: clamp(1.1rem, 4vw, 1.8rem);
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border: 2px solid var(--travel-gold);
+      border-radius: 50px;
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(44, 90, 160, 0.1) 100%);
+      backdrop-filter: blur(20px);
+      color: var(--travel-gold);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 
+        0 8px 32px rgba(212, 175, 55, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s;
+    }
+
+    button:hover::before {
+      left: 100%;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(44, 90, 160, 0.2) 100%);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 
+        0 15px 40px rgba(212, 175, 55, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      border-color: var(--travel-silver);
+      color: var(--travel-silver);
+    }
+
+    button:active {
+      transform: translateY(-1px) scale(1.01);
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      background: linear-gradient(145deg, rgba(15, 20, 25, 0.95) 0%, rgba(30, 58, 95, 0.95) 100%);
+      backdrop-filter: blur(40px);
+      padding: clamp(20px, 3vh, 40px) clamp(15px, 2vw, 30px);
+      border-radius: 24px;
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      max-width: 90vw;
+      width: 90vw;
+      max-height: 90vh;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+      text-align: center;
+      opacity: 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .popup.show {
+      display: block;
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      z-index: 999;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .popup-overlay.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .card-container {
+      display: flex;
+      gap: clamp(15px, 3vw, 30px);
+      justify-content: center;
+      margin-top: 3vh;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      width: clamp(280px, 35vw, 320px);
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 16px;
+      padding: 20px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+      border: 1px solid rgba(212, 175, 55, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 
+        0 20px 60px rgba(212, 175, 55, 0.2),
+        0 10px 30px rgba(0, 0, 0, 0.3);
+      border-color: rgba(212, 175, 55, 0.3);
+    }
+
+    .card img {
+      width: 100%;
+      height: clamp(160px, 20vw, 200px);
+      object-fit: cover;
+      border-radius: 12px;
+      filter: grayscale(20%) brightness(0.9);
+      transition: all 0.4s ease;
+    }
+
+    .card:hover img {
+      filter: grayscale(0%) brightness(1.1);
+      transform: scale(1.05);
+    }
+
+    .card p {
+      color: var(--travel-silver);
+      margin-top: 2vh;
+      font-weight: 500;
+      font-size: clamp(1rem, 3vw, 1.3rem);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: var(--travel-gold);
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(212, 175, 55, 0.2);
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .card-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .popup {
+        width: 95vw;
+        max-height: 90vh;
+        padding: 25px 15px;
+        border-radius: 20px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .popup.show {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .card {
+        width: clamp(260px, 70vw, 300px);
+      }
+
+      .card img {
+        height: clamp(140px, 18vw, 180px);
+      }
+
+      .card p {
+        font-size: 1.1rem;
+        margin-top: 15px;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 12vw, 5rem);
+      }
+
+      p {
+        font-size: clamp(1rem, 5vw, 1.5rem);
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 20px;
+      }
+
+      .popup {
+        width: 95vw;
+        max-height: 90vh;
+        padding: 20px 12px;
+        border-radius: 16px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+      }
+
+      .popup.show {
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      .card {
+        width: clamp(240px, 80vw, 280px);
+        padding: 15px;
+      }
+
+      .card img {
+        height: clamp(120px, 15vw, 160px);
+      }
+
+      .close-btn {
+        top: 15px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Karfa Luggage Centre</h1>
+  <p>Premium Luggage Collection</p>
+  <button onclick="showPopup()">Explore Collection</button>
+
+  <!-- Popup Overlay -->
+  <div class="popup-overlay" id="popupOverlay"></div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="close-btn" onclick="hidePopup()">×</div>
+    <div class="card-container">
+      <div class="card" onclick="location.href='virtual.html'">
+        <img src="screen.png" alt="Premium suitcases and luggage collection">
+        <p>Virtual Showroom</p>
+      </div>
+      <div class="card" onclick="location.href='physical.html'">
+        <img src="shop.png" alt="Modern luggage retail store">
+        <p>Visit Our Store</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      const overlay = document.getElementById('popupOverlay');
+      const popup = document.getElementById('popup');
+
+      overlay.style.display = 'block';
+      popup.style.display = 'block';
+
+      // Trigger animations
+      setTimeout(() => {
+        overlay.classList.add('show');
+        popup.classList.add('show');
+      }, 10);
+    }
+
+    function hidePopup() {
+      const overlay = document.getElementById('popupOverlay');
+      const popup = document.getElementById('popup');
+
+      overlay.classList.remove('show');
+      popup.classList.remove('show');
+
+      setTimeout(() => {
+        overlay.style.display = 'none';
+        popup.style.display = 'none';
+      }, 400);
+    }
+
+    // Close popup when clicking overlay
+    document.getElementById('popupOverlay').addEventListener('click', hidePopup);
+
+    // Close popup with Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hidePopup();
+      }
+    });
+  </script>
+</body>
+</html>
