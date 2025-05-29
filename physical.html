@@ -2,380 +2,444 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Construction</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+    <title>Karfa Luggage Centre</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        :root {
+            --deep-navy: #0f1a2e;
+            --royal-blue: #1e3a5f;
+            --steel-blue: #2c4f75;
+            --warm-gold: #d4af37;
+            --bronze-gold: #b8860b;
+            --ice-blue: #e6f2ff;
+            --powder-blue: #b8d4f0;
+            --midnight-blue: #0d1421;
+            --sapphire: #1e40af;
+            --champagne: #f7e7ce;
+            --shadow: rgba(0, 0, 0, 0.6);
+            --gold-glow: rgba(212, 175, 55, 0.4);
+            --blue-glow: rgba(30, 58, 95, 0.4);
+        }
+
         body {
-            font-family: 'Orbitron', monospace;
-            background: linear-gradient(135deg, #2d1b69 0%, #11001c 100%);
+            font-family: 'Lato', sans-serif;
+            background: linear-gradient(135deg, var(--deep-navy) 0%, var(--royal-blue) 30%, var(--steel-blue) 60%, var(--midnight-blue) 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            touch-action: manipulation; /* Improve touch responsiveness */
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 25% 25%, var(--gold-glow) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, var(--blue-glow) 0%, transparent 50%),
+                radial-gradient(circle at 50% 10%, rgba(30, 64, 175, 0.2) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            position: relative;
+            padding: clamp(15px, 4vw, 30px);
         }
-        
-        /* Animated background particles */
-        .particles {
+
+        .paper-plane {
             position: absolute;
-            top: 0;
-            left: 0;
+            width: clamp(30px, 4.5vw, 50px);
+            height: clamp(30px, 4.5vw, 50px);
+            left: -100px;
+            top: 15%;
+            transform: rotate(20deg);
+            opacity: 0;
+            animation: flyIn 2.5s ease-out forwards;
+        }
+
+        .paper-plane svg {
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            z-index: 1;
+            fill: url(#blueGoldGradient);
+            filter: drop-shadow(0 2px 10px var(--gold-glow));
         }
-        
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(147, 51, 234, 0.7);
-            border-radius: 50%;
-            animation: float 6s infinite linear;
-        }
-        
-        @keyframes float {
+
+        @keyframes flyIn {
             0% {
-                transform: translateY(100vh) rotate(0deg);
+                left: -100px;
+                top: 15%;
                 opacity: 0;
+                transform: rotate(20deg) scale(0.5);
             }
-            10% {
+            50% {
                 opacity: 1;
-            }
-            90% {
-                opacity: 1;
+                transform: rotate(10deg) scale(1.1);
             }
             100% {
-                transform: translateY(-10vh) rotate(360deg);
-                opacity: 0;
+                left: calc(50% - clamp(15px, 2.25vw, 25px));
+                top: calc(50% - clamp(15px, 2.25vw, 25px));
+                opacity: 1;
+                transform: rotate(0deg) scale(1);
             }
         }
-        
-        .container {
+
+        .address-container {
             text-align: center;
-            color: #e2e8f0;
-            z-index: 10;
-            position: relative;
-            padding: 2rem;
+            color: var(--ice-blue);
+            font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+            line-height: 1.6;
+            background: linear-gradient(145deg, rgba(15, 26, 46, 0.95), rgba(30, 58, 95, 0.9));
             backdrop-filter: blur(10px);
-            background: rgba(30, 16, 69, 0.3);
-            border-radius: 20px;
-            border: 1px solid rgba(147, 51, 234, 0.3);
-            box-shadow: 0 20px 40px rgba(30, 16, 69, 0.4);
-            max-width: 600px;
-            width: 90%;
+            padding: clamp(20px, 3.5vw, 40px);
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 
+                0 15px 40px var(--shadow),
+                inset 0 1px 0 rgba(212, 175, 55, 0.2);
+            opacity: 0;
+            transform: translateY(15px);
+            animation: fadeInUp 0.8s ease-out 2.5s forwards;
+            max-width: clamp(280px, 90vw, 700px);
+            width: 100%;
+            position: relative;
         }
-        
-        h1 {
-            font-size: 3rem;
-            font-weight: 900;
-            margin-bottom: 1rem;
-            background: linear-gradient(45deg, #fff, #ffeb3b, #fff);
-            background-size: 200% 200%;
+
+        .business-name {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.5rem, 4.5vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: clamp(15px, 2.5vw, 20px);
+            background: linear-gradient(45deg, var(--warm-gold), var(--champagne));
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3s ease-in-out infinite;
+            text-shadow: 0 0 20px var(--gold-glow);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            min-height: clamp(2rem, 5vw, 3rem);
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUp 1s ease-out 2.7s forwards;
         }
-        
-        @keyframes shimmer {
-            0%, 100% {
-                background-position: 200% 200%;
-            }
-            50% {
-                background-position: 0% 0%;
-            }
-        }
-        
-        .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 2rem;
-            opacity: 0.8;
-            animation: fadeInUp 2s ease-out;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 0.8;
-                transform: translateY(0);
-            }
-        }
-        
-        .construction-icon {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-20px);
-            }
-            60% {
-                transform: translateY(-10px);
-            }
-        }
-        
-        .progress-container {
-            width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            margin: 2rem 0;
-            overflow: hidden;
-        }
-        
-        .progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, #ff6b6b, #4ecdc4, #45b7d1);
-            background-size: 200% 100%;
-            border-radius: 10px;
-            animation: progressMove 3s ease-in-out infinite, progressGlow 2s ease-in-out infinite alternate;
-            width: 0%;
-            animation: loadProgress 4s ease-out infinite;
-        }
-        
-        @keyframes progressMove {
-            0%, 100% {
-                background-position: 200% 0%;
-            }
-            50% {
-                background-position: 0% 0%;
-            }
-        }
-        
-        @keyframes progressGlow {
-            from {
-                box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            }
-            to {
-                box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            }
-        }
-        
-        @keyframes loadProgress {
-            0% { width: 0%; }
-            50% { width: 75%; }
-            100% { width: 0%; }
-        }
-        
-        .status-text {
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            opacity: 0.7;
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes pulse {
-            0%, 100% {
-                opacity: 0.7;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-        
-        .gear {
+
+        .business-name::after {
+            content: '';
             position: absolute;
-            color: rgba(255, 255, 255, 0.1);
-            font-size: 2rem;
-            animation: rotate 10s linear infinite;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 1.5px;
+            background: linear-gradient(90deg, transparent, var(--warm-gold), transparent);
         }
-        
-        .gear:nth-child(1) {
-            top: 10%;
-            left: 10%;
-            animation-delay: 0s;
+
+        .typewriter-line {
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            letter-spacing: 0.8px;
+            margin: clamp(8px, 1.5vw, 12px) 0;
+            min-height: 1.6em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            font-size: clamp(0.9rem, 2vw, 1.1rem);
+            color: var(--ice-blue);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
         }
-        
-        .gear:nth-child(2) {
-            top: 20%;
-            right: 15%;
-            animation-delay: -3s;
+
+        .typewriter-line:first-of-type {
+            font-weight: 600;
+            color: var(--powder-blue);
+            font-size: clamp(1rem, 2.3vw, 1.3rem);
         }
-        
-        .gear:nth-child(3) {
-            bottom: 15%;
-            left: 20%;
-            animation-delay: -6s;
+
+        .cursor {
+            display: inline-block;
+            background: var(--warm-gold);
+            width: 2px;
+            height: 1.1em;
+            animation: blink 0.8s infinite;
+            margin-left: 2px;
         }
-        
-        .gear:nth-child(4) {
-            bottom: 10%;
-            right: 10%;
-            animation-delay: -1.5s;
-        }
-        
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .notification {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            padding: 1rem;
-            margin-top: 2rem;
-            animation: slideInUp 2.5s ease-out;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
+
+        @keyframes fadeInUp {
             to {
                 opacity: 1;
                 transform: translateY(0);
             }
         }
-        
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        .floating-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            border-radius: 50%;
+            animation: float 10s infinite linear;
+            will-change: transform; /* Optimize for animation */
+        }
+
+        .particle:nth-child(odd) {
+            background: var(--warm-gold);
+        }
+
+        .particle:nth-child(even) {
+            background: var(--sapphire);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+        }
+
+        /* Tablet and below */
+        @media (max-width: 1024px) {
+            .address-container {
+                padding: clamp(15px, 3vw, 25px);
+                font-size: clamp(0.85rem, 2vw, 1.1rem);
+                max-width: clamp(260px, 85vw, 600px);
+            }
+
+            .business-name {
+                font-size: clamp(1.3rem, 4vw, 2rem);
+                margin-bottom: clamp(12px, 2vw, 15px);
+                min-height: clamp(1.8rem, 4.5vw, 2.5rem);
+            }
+
+            .paper-plane {
+                width: clamp(25px, 4vw, 40px);
+                height: clamp(25px, 4vw, 40px);
+            }
+        }
+
+        /* Mobile and below */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .construction-icon {
-                font-size: 3rem;
-            }
-            
             .container {
-                padding: 1.5rem;
+                padding: clamp(10px, 2.5vw, 20px);
+            }
+
+            .address-container {
+                padding: clamp(12px, 2.5vw, 20px);
+                font-size: clamp(0.8rem, 1.8vw, 1rem);
+                max-width: clamp(240px, 90vw, 500px);
+                border-radius: 12px;
+            }
+
+            .business-name {
+                font-size: clamp(1.2rem, 3.8vw, 1.8rem);
+                margin-bottom: clamp(10px, 2vw, 12px);
+                min-height: clamp(1.6rem, 4vw, 2.2rem);
+                letter-spacing: 1px;
+            }
+
+            .paper-plane {
+                width: clamp(20px, 3.5vw, 30px);
+                height: clamp(20px, 3.5vw, 30px);
+                top: 10%;
+            }
+
+            .typewriter-line {
+                line-height: 1.5;
+                font-size: clamp(0.8rem, 1.8vw, 1rem);
+            }
+
+            .typewriter-line:first-of-type {
+                font-size: clamp(0.9rem, 2.1vw, 1.2rem);
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            .container {
+                padding: clamp(8px, 2vw, 12px);
+            }
+
+            .address-container {
+                padding: clamp(10px, 2vw, 15px);
+                font-size: clamp(0.75rem, 1.6vw, 0.9rem);
+                max-width: clamp(220px, 95vw, 400px);
+                border-radius: 10px;
+            }
+
+            .business-name {
+                font-size: 5vw;
+                margin-bottom: clamp(8px, 1.8vw, 10px);
+                min-height: clamp(1.4rem, 3.8vw, 2rem);
+            }
+
+            .paper-plane {
+                width: clamp(18px, 3vw, 25px);
+                height: clamp(18px, 3vw, 25px);
+            }
+
+            .typewriter-line {
+                line-height: 1.4;
+                font-size: 3vw;
+margin-top: 20px;
+            }
+
+            .typewriter-line:first-of-type {
+                font-size: clamp(0.8rem, 1.9vw, 1rem);
             }
         }
     </style>
 </head>
 <body>
-    <div class="particles"></div>
-    
-    <!-- Rotating gears in background -->
-    <div class="gear">⚙️</div>
-    <div class="gear">⚙️</div>
-    <div class="gear">⚙️</div>
-    <div class="gear">⚙️</div>
-    
+    <div class="floating-particles" id="particles"></div>
+
     <div class="container">
-        <div class="construction-icon">🚧</div>
-        <h1>Under Construction</h1>
-        <p class="subtitle">We're building something amazing for you!</p>
-        
-        <div class="progress-container">
-            <div class="progress-bar"></div>
+        <div class="paper-plane">
+            <svg viewBox="0 0 24 24">
+                <defs>
+                    <linearGradient id="blueGoldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#d4af37;stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#1e40af;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#b8860b;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+            </svg>
         </div>
-        
-        <p class="status-text">Loading awesome features...</p>
-        
-        <div class="notification">
-            <p>🔨 Our team is working hard to bring you an incredible experience.</p>
-            <p>Check back soon for updates!</p>
+
+        <div class="address-container">
+            <div class="business-name">Karfa Luggage Centre</div>
+            <div class="typewriter-line" id="line1"></div>
+            <div class="typewriter-line" id="line2"></div>
+            <div class="typewriter-line" id="line3"></div>
         </div>
     </div>
 
     <script>
-        // Create floating particles
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            particle.style.left = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 6 + 's';
-            particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            document.querySelector('.particles').appendChild(particle);
-            
-            // Remove particle after animation
-            setTimeout(() => {
-                particle.remove();
-            }, 8000);
+        // Create floating particles (optimized for mobile)
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = window.innerWidth <= 768 ? 10 : 15; // Reduce particles on mobile
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 6) + 's';
+                particlesContainer.appendChild(particle);
+            }
         }
-        
-        // Create particles continuously
-        setInterval(createParticle, 300);
-        
-        // Dynamic status messages
-        const statusMessages = [
-            "Loading awesome features...",
-            "Crafting the perfect experience...",
-            "Almost ready to launch...",
-            "Fine-tuning the details...",
-            "Building something spectacular..."
-        ];
-        
-        let messageIndex = 0;
-        const statusElement = document.querySelector('.status-text');
-        
-        setInterval(() => {
-            statusElement.style.opacity = '0';
-            setTimeout(() => {
-                messageIndex = (messageIndex + 1) % statusMessages.length;
-                statusElement.textContent = statusMessages[messageIndex];
-                statusElement.style.opacity = '0.7';
-            }, 500);
-        }, 3000);
-        
-        // Add random sparkle effect
-        function createSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.innerHTML = '✨';
-            sparkle.style.position = 'absolute';
-            sparkle.style.left = Math.random() * 100 + '%';
-            sparkle.style.top = Math.random() * 100 + '%';
-            sparkle.style.fontSize = Math.random() * 20 + 10 + 'px';
-            sparkle.style.opacity = '0';
-            sparkle.style.animation = 'sparkleEffect 2s ease-out';
-            sparkle.style.pointerEvents = 'none';
-            sparkle.style.zIndex = '5';
-            
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                sparkle.remove();
-            }, 2000);
-        }
-        
-        // Add sparkle animation keyframes dynamically
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes sparkleEffect {
-                0% {
-                    opacity: 0;
-                    transform: scale(0) rotate(0deg);
-                }
-                50% {
-                    opacity: 1;
-                    transform: scale(1) rotate(180deg);
-                }
-                100% {
-                    opacity: 0;
-                    transform: scale(0) rotate(360deg);
+
+        // Typewriter effect
+        function typeWriter(element, text, speed = 80, callback = null) {
+            let i = 0;
+            element.innerHTML = '';
+
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    if (callback) callback();
                 }
             }
-        `;
-        document.head.appendChild(style);
-        
-        // Create sparkles periodically
-        setInterval(createSparkle, 2000);
+            type();
+        }
+
+        // Add cursor to element
+        function addCursor(element) {
+            const cursor = document.createElement('span');
+            cursor.className = 'cursor';
+            element.appendChild(cursor);
+        }
+
+        // Remove cursor from element
+        function removeCursor(element) {
+            const cursor = element.querySelector('.cursor');
+            if (cursor) cursor.remove();
+        }
+
+        // Initialize typewriter sequence
+        function startTypewriterSequence() {
+            const line1 = document.getElementById('line1');
+            const line2 = document.getElementById('line2');
+            const line3 = document.getElementById('line3');
+
+            const texts = [
+                'Visit Us At',
+                'Madhya Chaulpatty, Tarakeswar, Hooghly, 712410',
+                'Contact: 9378067540'
+            ];
+
+            const elements = [line1, line2, line3];
+            const speeds = [60, 50, 60];
+
+            function typeSequence(index) {
+                if (index < elements.length) {
+                    addCursor(elements[index]);
+                    typeWriter(elements[index], texts[index], speeds[index], () => {
+                        setTimeout(() => {
+                            removeCursor(elements[index]);
+                            typeSequence(index + 1);
+                        }, 400);
+                    });
+                }
+            }
+
+            setTimeout(() => {
+                typeSequence(0);
+            }, 3500);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            createParticles();
+            startTypewriterSequence();
+        });
+
+        // Add touch interaction for mobile
+        let touchStartX = 0, touchStartY = 0;
+        document.addEventListener('touchmove', (e) => {
+            if (window.innerWidth > 768) return; // Disable on larger screens
+            const touch = e.touches[0];
+            const plane = document.querySelector('.paper-plane');
+            const x = (touch.clientX / window.innerWidth - 0.5) * 15;
+            const y = (touch.clientY / window.innerHeight - 0.5) * 15;
+
+            setTimeout(() => {
+                plane.style.transform = `translate(${x}px, ${y}px)`;
+            }, 2500);
+        }, { passive: true });
     </script>
 </body>
 </html>
