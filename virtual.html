@@ -3,313 +3,470 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Using Roboto as a good general-purpose sans-serif font, fallback to system fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <title>Sohan's Luggage Emporium</title>
     <style>
+        /* 1. Clear Previous Styles (by starting fresh) & 2. Global Styles */
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-bg: #f4f7f9;
-            --secondary-bg: #ffffff;
-            --header-bg: #1a237e; /* Deep blue */
-            --footer-bg: #333333;
-            --text-color: #333333;
-            --heading-color: #1a237e; /* Deep blue */
-            --accent-color: #c5a65a; /* Gold accent */
-            --card-shadow: rgba(0, 0, 0, 0.1);
-            --border-color: #e0e0e0;
         }
 
         body {
-            background-color: var(--primary-bg);
-            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
-            color: var(--text-color);
-            line-height: 1.6; /* Improved readability */
+            margin: 0;
+            background-color: #f0f2f5; /* Light grey background */
+            color: #333;
+            /* Prioritize system fonts, then Roboto, then generic sans-serif */
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+            line-height: 1.6;
         }
 
-        header {
-            background-color: var(--header-bg);
-            color: #ffffff; /* Light text on dark header */
-            padding: 2rem 1rem; /* Increased padding */
-            text-align: center;
-            margin-bottom: 2rem; /* Spacing after header */
+        a {
+            text-decoration: none;
+            color: inherit;
         }
 
-        header h1 {
-            font-family: 'Roboto', sans-serif;
-            font-size: 2.5rem; /* Larger H1 */
-            font-weight: 700;
-            margin: 0; /* Remove default margin */
+        /* 3. Top Navigation Bar (.top-nav-bar) */
+        .top-nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: sticky; /* Make it sticky */
+            top: 0;
+            z-index: 1000; /* Ensure it's above other content */
         }
 
-        main {
-            max-width: 1200px;
-            margin: 0 auto; /* Center content */
-            padding: 0 1rem 2rem 1rem; /* Add horizontal padding, adjust bottom padding */
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #1a237e; /* Previous heading color for logo consistency */
         }
 
-        /* Common styling for all top-level sections in main */
-        main > section {
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: var(--secondary-bg); /* For the main #products section container */
-            border-radius: 8px;
-            box-shadow: 0 4px 12px var(--card-shadow);
+        .search-container {
+            flex-grow: 1;
+            margin: 0 20px;
+            max-width: 600px; /* Max width for search bar */
         }
 
-        /* Styling for product category sub-sections */
-        section#products > section { /* Target sections within #products */
-            margin-bottom: 2rem;
-            padding: 1.5rem;
-            background-color: var(--primary-bg); /* Lighter background for sub-sections if desired, or keep same as parent */
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            /* Removed box-shadow from sub-sections to avoid double shadow if main #products has one */
-        }
-
-
-        section h2 { /* For "Products" title */
-            font-family: 'Roboto', sans-serif;
-            color: var(--heading-color);
-            font-size: 2rem; /* Prominent H2 */
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        section h3 { /* For "Trolleys", "Briefcases", "Bags", "Kitchen Appliances" titles */
-            font-family: 'Roboto', sans-serif;
-            color: var(--heading-color);
-            font-size: 1.5rem; /* Clear H3 */
-            font-weight: 700;
-            margin-bottom: 1rem;
-            padding-bottom: 0.25rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .product-item {
-            background-color: var(--secondary-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem; /* Spacing between items */
-            box-shadow: 0 4px 8px var(--card-shadow);
-            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Subtle hover effect */
-        }
-
-        .product-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-
-        .product-item h4 {
-            font-family: 'Roboto', sans-serif;
-            color: var(--heading-color);
-            font-size: 1.25rem; /* Product title size */
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-        }
-
-        .product-item p {
-            font-size: 0.95rem; /* Product description size */
-            margin-bottom: 1rem;
-            color: #555555; /* Slightly lighter text for description */
-        }
-
-        .product-item img {
-            max-width: 100%;
-            height: 200px; /* Fixed height for placeholder */
-            object-fit: cover; /* Ensure image covers the area, might crop */
-            background-color: #e0e0e0; /* Placeholder background */
-            display: block; /* Remove extra space below image */
+        .search-container input[type="search"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            margin-bottom: 1rem; /* Space below image */
-            text-align: center;
-            line-height: 200px; /* Vertically center alt text if image fails */
-            color: #999; /* Alt text color */
-            border: 1px solid var(--border-color);
+            font-size: 1em;
         }
 
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions span {
+            margin-left: 20px; /* Increased spacing */
+            cursor: pointer;
+            font-size: 0.9em;
+            color: #333; /* Darker text for better visibility */
+        }
+        .user-actions span:hover {
+            color: #2874f0; /* Example hover color */
+        }
+
+        /* 4. Category Navigation (.category-nav) */
+        .category-nav {
+            background-color: #fff;
+            padding: 0; /* Remove padding if ul will have it */
+            border-bottom: 1px solid #e0e0e0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Subtle shadow */
+        }
+
+        .category-nav ul {
+            list-style: none;
+            margin: 0 auto; /* Center the ul */
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            max-width: 1400px; /* Align with main content width */
+        }
+
+        .category-nav ul li a {
+            padding: 12px 20px; /* Adjusted padding */
+            display: block;
+            color: #333;
+            font-weight: 500; /* Medium weight for nav items */
+            font-size: 0.95em;
+            transition: color 0.2s ease, border-bottom 0.2s ease;
+            border-bottom: 2px solid transparent; /* For hover effect */
+        }
+
+        .category-nav ul li a:hover {
+            color: #2874f0; /* Flipkart-like blue for hover */
+            border-bottom: 2px solid #2874f0;
+        }
+
+        /* 5. Main Content Area (<main>) */
+        main {
+            display: flex;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 20px auto 0 auto; /* Add top margin */
+        }
+
+        /* 6. Sidebar Placeholder (.sidebar-placeholder) */
+        .sidebar-placeholder {
+            flex-basis: 20%;
+            min-width: 200px; /* Minimum width for sidebar */
+            background-color: #fff;
+            padding: 20px; /* Increased padding */
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            margin-right: 20px;
+            height: fit-content; /* Adjusts height to content */
+        }
+        .sidebar-placeholder p {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #333;
+        }
+
+
+        /* 7. Product Grid Area (.product-grid-area) */
+        .product-grid-area {
+            flex-basis: 80%;
+        }
+
+        /* 8. Product Category Section (.product-category) */
+        .product-category {
+            margin-bottom: 30px;
+            background-color: #fff; /* Give categories a white background */
+            padding: 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .product-category h3 {
+            font-size: 1.6em; /* Slightly reduced from 1.8em */
+            margin-bottom: 20px;
+            color: #111;
+            padding-bottom: 10px; /* Add padding for border */
+            border-bottom: 1px solid #eee; /* Subtle border */
+            font-weight: 700; /* Ensure it's bold */
+        }
+
+        /* 9. Product Grid (.product-grid) */
+        .product-grid {
+            display: grid;
+            /* Responsive grid: min 220px width, max 1fr */
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        /* 10. Product Card (.product-card) */
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: left; /* Align text to left for typical card layout */
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+            display: flex; /* For better internal alignment */
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            box-shadow: 0 4px 10px rgba(0,0,0,0.12); /* Enhanced shadow on hover */
+            transform: translateY(-3px); /* Slight lift effect */
+        }
+
+        .product-card img {
+            width: 100%; /* Make image take full card width */
+            height: 180px;
+            object-fit: cover; /* Cover to maintain aspect ratio */
+            margin-bottom: 15px; /* Increased margin */
+            border-radius: 4px;
+            background-color: #f0f0f0; /* Lighter placeholder bg */
+        }
+
+        .product-card h4 {
+            font-size: 1.05em; /* Adjusted size */
+            font-weight: 500; /* Medium weight */
+            margin-bottom: 8px;
+            color: #333;
+            /* Clamp to 2 lines */
+            height: 2.6em; /* Approx 2 lines height (1.05em * 1.6 * 2) */
+            line-height: 1.3em; /* Control line height for clamping */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            font-size: 1.1em; /* Slightly larger price */
+            color: #111;
+            font-weight: bold;
+            margin-bottom: 12px; /* Increased margin */
+        }
+
+        .view-details-btn {
+            background-color: #28a745; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            width: 100%; /* Make button full width of card padding */
+            margin-top: auto; /* Push to bottom of card */
+        }
+
+        .view-details-btn:hover {
+            background-color: #218838; /* Darker green */
+        }
+
+        /* 11. Footer (footer) */
         footer {
-            background-color: var(--footer-bg);
-            color: var(--primary-bg); /* Light text on dark footer */
-            padding: 2.5rem 1rem; /* Generous padding */
+            background-color: #1c2331; /* Darker, more modern footer color */
+            color: #f0f0f0;
             text-align: center;
-            margin-top: 2rem; /* Space above footer */
+            padding: 30px 20px; /* Increased padding */
+            margin-top: 30px;
         }
-
         footer p {
-            margin-bottom: 0.5rem;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
         }
-        footer p:last-child {
+        footer p:last-child{
             margin-bottom: 0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 992px) { /* Medium devices (tablets, less than 992px) */
-            header h1 {
-                font-size: 2.2rem;
+
+        /* 12. Responsiveness (Media Queries) */
+        @media (max-width: 992px) { /* Tablets and large phones */
+            main {
+                flex-direction: column;
+                padding: 15px;
             }
-            section h2 {
-                font-size: 1.8rem;
+            .sidebar-placeholder {
+                flex-basis: 100%;
+                margin-right: 0;
+                margin-bottom: 20px;
+                min-width: unset; /* Remove min-width */
             }
-            section h3 {
-                font-size: 1.3rem;
+            .product-grid-area {
+                flex-basis: 100%;
             }
-            .product-item h4 {
-                font-size: 1.15rem;
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+            .category-nav ul {
+                justify-content: flex-start;
+                overflow-x: auto; /* Allow horizontal scroll for categories */
+                padding-left: 10px; /* Add padding for scroll start */
+                padding-right: 10px;
+            }
+            .category-nav ul li a {
+                white-space: nowrap; /* Prevent nav items from wrapping */
             }
         }
 
-        @media (max-width: 768px) { /* Small devices (landscape phones, less than 768px) */
+        @media (max-width: 768px) { /* Smaller tablets and mobile phones */
+            .top-nav-bar {
+                flex-wrap: wrap; /* Allow items to wrap */
+                padding: 10px 15px;
+            }
+            .search-container {
+                width: 100%; /* Full width */
+                margin: 10px 0; /* Add margin when wrapped */
+                order: 3; /* Search bar below logo and actions */
+            }
+            .logo {
+                order: 1;
+                font-size: 1.3em; /* Reduce logo size */
+            }
+            .user-actions {
+                order: 2;
+                margin-left: auto; /* Push to the right */
+            }
+            .user-actions span {
+                margin-left: 15px; /* Adjust spacing */
+                font-size: 0.85em;
+            }
+
+            .product-category h3 {
+                font-size: 1.4em;
+            }
+            .product-grid {
+                /* Switch to 2 columns for smaller tablets / large phones */
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            .product-card img {
+                height: 160px; /* Adjust image height */
+            }
+            .product-card h4 {
+                font-size: 1em;
+                 height: 2.4em; /* Approx 2 lines */
+            }
+            .product-price {
+                font-size: 1em;
+            }
+            .view-details-btn {
+                padding: 8px 12px;
+                font-size: 0.9em;
+            }
+             main {
+                padding: 10px;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) { /* Small mobile phones */
             body {
-                line-height: 1.5;
+                font-size: 15px; /* Slightly adjust base font size for small screens */
             }
-            header {
-                padding: 1.5rem 1rem;
-                margin-bottom: 1.5rem;
+            .logo {
+                font-size: 1.2em;
             }
-            header h1 {
-                font-size: 2rem;
+            .user-actions span {
+                margin-left: 10px;
             }
-            main {
-                padding: 0 0.5rem 1.5rem 0.5rem;
+            .product-grid {
+                grid-template-columns: 1fr; /* Single column for products */
             }
-            main > section { /* Reduce padding for main #products section */
-                 padding: 1rem;
-                 margin-bottom: 1.5rem;
+            .product-card img {
+                height: 180px; /* Can be a bit taller in single column */
             }
-            section#products > section { /* Reduce padding for sub-sections */
-                padding: 1rem;
-                margin-bottom: 1.5rem;
+            .product-category h3 {
+                font-size: 1.3em;
             }
-            section h2 {
-                font-size: 1.6rem;
-                margin-bottom: 1rem;
+             .product-card h4 {
+                font-size: 0.95em;
             }
-            section h3 {
-                font-size: 1.2rem;
-                margin-bottom: 0.75rem;
+            .product-price {
+                font-size: 0.95em;
             }
-            .product-item {
-                padding: 1rem;
-                margin-bottom: 1rem;
-            }
-            .product-item h4 {
-                font-size: 1.1rem;
-            }
-            .product-item p {
-                font-size: 0.9rem;
-            }
-            .product-item img {
-                height: 180px; /* Adjust placeholder height */
-                line-height: 180px;
+            .view-details-btn {
+                font-size: 0.85em;
             }
             footer {
-                padding: 2rem 1rem;
-                margin-top: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) { /* Extra small devices (portrait phones, less than 480px) */
-            header h1 {
-                font-size: 1.75rem;
-            }
-            section h2 {
-                font-size: 1.4rem;
-            }
-            section h3 {
-                font-size: 1.1rem;
-            }
-            .product-item h4 {
-                font-size: 1rem;
-            }
-            .product-item img {
-                height: 150px; /* Further adjust placeholder height */
-                line-height: 150px;
-            }
-            footer p {
-                font-size: 0.85rem;
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Sohan's Luggage Emporium</h1>
-    </header>
+
+    <div class="top-nav-bar">
+        <div class="logo">Sohan's Luggage Emporium</div>
+        <div class="search-container">
+            <input type="search" placeholder="Search for products...">
+        </div>
+        <div class="user-actions">
+            <span>Account</span>
+            <span>Wishlist</span>
+            <span>Cart</span>
+        </div>
+    </div>
+
+    <nav class="category-nav">
+        <ul>
+            <li><a href="#trolleys">Trolleys</a></li>
+            <li><a href="#briefcases">Briefcases</a></li>
+            <li><a href="#bags">Bags</a></li>
+            <li><a href="#kitchen-appliances">Kitchen Appliances</a></li>
+        </ul>
+    </nav>
 
     <main>
-        <section id="products">
-            <h2>Products</h2>
-
-            <section id="trolleys">
+        <aside class="sidebar-placeholder">
+            <p>Filter Options</p> <!-- Removed (Placeholder) from text -->
+        </aside>
+        <div class="product-grid-area">
+            <section id="trolleys" class="product-category">
                 <h3>Trolleys</h3>
-                <div class="product-item">
-                    <h4>Voyager X Trolley</h4>
-                    <p>Durable and spacious for long trips.</p>
-                    <img src='placeholder.jpg' alt='Voyager X Trolley'>
-                </div>
-                <div class="product-item">
-                    <h4>CityHopper Carry-on</h4>
-                    <p>Compact and stylish for short stays.</p>
-                    <img src='placeholder.jpg' alt='CityHopper Carry-on'>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Voyager X Trolley">
+                        <h4>Voyager X Trolley</h4>
+                        <p class="product-price">$120.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="CityHopper Carry-on">
+                        <h4>CityHopper Carry-on</h4>
+                        <p class="product-price">$85.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
                 </div>
             </section>
 
-            <section id="briefcases">
+            <section id="briefcases" class="product-category">
                 <h3>Briefcases</h3>
-                <div class="product-item">
-                    <h4>Executive Pro Briefcase</h4>
-                    <p>Sleek design with multiple compartments.</p>
-                    <img src='placeholder.jpg' alt='Executive Pro Briefcase'>
-                </div>
-                <div class="product-item">
-                    <h4>Classic Leather Attaché</h4>
-                    <p>Timeless style and robust construction.</p>
-                    <img src='placeholder.jpg' alt='Classic Leather Attaché'>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Executive Pro Briefcase">
+                        <h4>Executive Pro Briefcase</h4>
+                        <p class="product-price">$150.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Classic Leather Attaché">
+                        <h4>Classic Leather Attaché</h4>
+                        <p class="product-price">$180.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
                 </div>
             </section>
 
-            <section id="bags">
+            <section id="bags" class="product-category">
                 <h3>Bags</h3>
-                <div class="product-item">
-                    <h4>Adventure Duffle Bag</h4>
-                    <p>Versatile and rugged for all your adventures.</p>
-                    <img src='placeholder.jpg' alt='Adventure Duffle Bag'>
-                </div>
-                <div class="product-item">
-                    <h4>Everyday Backpack</h4>
-                    <p>Comfortable and practical for daily use.</p>
-                    <img src='placeholder.jpg' alt='Everyday Backpack'>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Adventure Duffle Bag">
+                        <h4>Adventure Duffle Bag</h4>
+                        <p class="product-price">$95.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Everyday Backpack">
+                        <h4>Everyday Backpack</h4>
+                        <p class="product-price">$60.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
                 </div>
             </section>
             
-            <section id="kitchen-appliances">
+            <section id="kitchen-appliances" class="product-category">
                 <h3>Kitchen Appliances</h3>
-                <div class="product-item">
-                    <h4>QuickBake Oven</h4>
-                    <p>Efficient countertop oven for quick meals.</p>
-                    <img src='placeholder.jpg' alt='QuickBake Oven'>
-                </div>
-                <div class="product-item">
-                    <h4>InstaFlame Gas Lighter</h4>
-                    <p>Reliable and easy-to-use gas lighter.</p>
-                    <img src='placeholder.jpg' alt='InstaFlame Gas Lighter'>
-                </div>
-                <div class="product-item">
-                    <h4>Universal Appliance Spares</h4>
-                    <p>High-quality spare parts for various appliances.</p>
-                    <img src='placeholder.jpg' alt='Universal Appliance Spares'>
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="QuickBake Oven">
+                        <h4>QuickBake Oven</h4>
+                        <p class="product-price">$75.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="InstaFlame Gas Lighter">
+                        <h4>InstaFlame Gas Lighter</h4>
+                        <p class="product-price">$15.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
+                    <div class="product-card">
+                        <img src="placeholder.jpg" alt="Universal Appliance Spares">
+                        <h4>Universal Appliance Spares</h4>
+                        <p class="product-price">$25.00</p>
+                        <button class="view-details-btn">View Details</button>
+                    </div>
                 </div>
             </section>
-        </section>
+        </div>
     </main>
 
     <footer>
