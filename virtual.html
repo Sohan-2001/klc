@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
-    <title>Page Being Developed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <title>Sohan's Luggage Emporium</title>
     <style>
         * {
             margin: 0;
@@ -13,233 +13,308 @@
         }
 
         :root {
-            --charcoal-black: #1a1a1a;
-            --premium-gold: #c5a65a;
-            --ivory-white: #f5f5f5;
-            --deep-burgundy: #4a2c2a;
-            --terminal-green: #00ff00;
-            --shadow: rgba(0, 0, 0, 0.5);
-            --gold-glow: rgba(197, 166, 90, 0.3);
+            --primary-bg: #f4f7f9;
+            --secondary-bg: #ffffff;
+            --header-bg: #1a237e; /* Deep blue */
+            --footer-bg: #333333;
+            --text-color: #333333;
+            --heading-color: #1a237e; /* Deep blue */
+            --accent-color: #c5a65a; /* Gold accent */
+            --card-shadow: rgba(0, 0, 0, 0.1);
+            --border-color: #e0e0e0;
         }
 
         body {
-            background: linear-gradient(135deg, var(--charcoal-black) 0%, var(--deep-burgundy) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Fira Code', monospace;
-            position: relative;
-            overflow-x: hidden;
-            touch-action: manipulation;
+            background-color: var(--primary-bg);
+            font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6; /* Improved readability */
         }
 
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 50% 50%, var(--gold-glow) 0%, transparent 70%);
-            opacity: 0.5;
-            animation: glowPulse 8s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 0.7; }
-        }
-
-        .laptop {
-            width: clamp(320px, 50vw, 400px);
-            height: clamp(200px, 30vw, 250px);
-            position: relative;
-            opacity: 0;
-            transform: translateY(20px) scale(0.98);
-            animation: laptopFadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) 0.5s forwards;
-        }
-
-        .screen {
-            width: 100%;
-            height: 100%;
-            background: #0d1117;
-            border-radius: 12px 12px 0 0;
-            border: 8px solid #30363d;
-            border-bottom: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .screen-content {
-            color: var(--terminal-green);
-            font-size: clamp(0.9rem, 2.2vw, 1.1rem);
+        header {
+            background-color: var(--header-bg);
+            color: #ffffff; /* Light text on dark header */
+            padding: 2rem 1rem; /* Increased padding */
             text-align: center;
-            padding: clamp(10px, 2vw, 20px);
-            line-height: 1.5;
-            white-space: pre-wrap;
-            text-shadow: 0 0 8px rgba(0, 255, 0, 0.3);
+            margin-bottom: 2rem; /* Spacing after header */
         }
 
-        .base {
-            width: calc(100% + 20px);
-            height: 20px;
-            background: #30363d;
-            border-radius: 0 0 15px 15px;
-            margin: 0 auto;
-            position: relative;
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2.5rem; /* Larger H1 */
+            font-weight: 700;
+            margin: 0; /* Remove default margin */
         }
 
-        .base::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 40px;
-            height: 8px;
-            background: #21262d;
+        main {
+            max-width: 1200px;
+            margin: 0 auto; /* Center content */
+            padding: 0 1rem 2rem 1rem; /* Add horizontal padding, adjust bottom padding */
+        }
+
+        /* Common styling for all top-level sections in main */
+        main > section {
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--secondary-bg); /* For the main #products section container */
+            border-radius: 8px;
+            box-shadow: 0 4px 12px var(--card-shadow);
+        }
+
+        /* Styling for product category sub-sections */
+        section#products > section { /* Target sections within #products */
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background-color: var(--primary-bg); /* Lighter background for sub-sections if desired, or keep same as parent */
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            /* Removed box-shadow from sub-sections to avoid double shadow if main #products has one */
+        }
+
+
+        section h2 { /* For "Products" title */
+            font-family: 'Roboto', sans-serif;
+            color: var(--heading-color);
+            font-size: 2rem; /* Prominent H2 */
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--accent-color);
+        }
+
+        section h3 { /* For "Trolleys", "Briefcases", "Bags", "Kitchen Appliances" titles */
+            font-family: 'Roboto', sans-serif;
+            color: var(--heading-color);
+            font-size: 1.5rem; /* Clear H3 */
+            font-weight: 700;
+            margin-bottom: 1rem;
+            padding-bottom: 0.25rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .product-item {
+            background-color: var(--secondary-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem; /* Spacing between items */
+            box-shadow: 0 4px 8px var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Subtle hover effect */
+        }
+
+        .product-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .product-item h4 {
+            font-family: 'Roboto', sans-serif;
+            color: var(--heading-color);
+            font-size: 1.25rem; /* Product title size */
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .product-item p {
+            font-size: 0.95rem; /* Product description size */
+            margin-bottom: 1rem;
+            color: #555555; /* Slightly lighter text for description */
+        }
+
+        .product-item img {
+            max-width: 100%;
+            height: 200px; /* Fixed height for placeholder */
+            object-fit: cover; /* Ensure image covers the area, might crop */
+            background-color: #e0e0e0; /* Placeholder background */
+            display: block; /* Remove extra space below image */
             border-radius: 4px;
+            margin-bottom: 1rem; /* Space below image */
+            text-align: center;
+            line-height: 200px; /* Vertically center alt text if image fails */
+            color: #999; /* Alt text color */
+            border: 1px solid var(--border-color);
         }
 
-        .cursor {
-            display: inline-block;
-            background: var(--terminal-green);
-            width: 2px;
-            height: 1.2em;
-            animation: blink 0.8s ease-in-out infinite;
-            margin-left: 2px;
+        footer {
+            background-color: var(--footer-bg);
+            color: var(--primary-bg); /* Light text on dark footer */
+            padding: 2.5rem 1rem; /* Generous padding */
+            text-align: center;
+            margin-top: 2rem; /* Space above footer */
         }
 
-        @keyframes laptopFadeIn {
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+        footer p {
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+        footer p:last-child {
+            margin-bottom: 0;
         }
 
-        @keyframes blink {
-            0%, 50% { opacity: 1; }
-            51%, 100% { opacity: 0; }
-        }
-
-        /* Tablet and below */
-        @media (max-width: 768px) {
-            .laptop {
-                width: clamp(280px, 80vw, 320px);
-                height: clamp(180px, 50vw, 200px);
+        /* Responsive Design */
+        @media (max-width: 992px) { /* Medium devices (tablets, less than 992px) */
+            header h1 {
+                font-size: 2.2rem;
             }
-
-            .screen-content {
-                font-size: clamp(0.8rem, 2vw, 0.95rem);
-                padding: clamp(8px, 1.5vw, 15px);
+            section h2 {
+                font-size: 1.8rem;
             }
-
-            .base {
-                width: calc(100% + 15px);
-                height: 15px;
+            section h3 {
+                font-size: 1.3rem;
             }
-
-            .base::before {
-                width: 30px;
-                height: 6px;
+            .product-item h4 {
+                font-size: 1.15rem;
             }
         }
 
-        /* Small mobile */
-        @media (max-width: 480px) {
-            .laptop {
-                width: clamp(240px, 90vw, 280px);
-                height: clamp(150px, 45vw, 180px);
+        @media (max-width: 768px) { /* Small devices (landscape phones, less than 768px) */
+            body {
+                line-height: 1.5;
             }
-
-            .screen-content {
-                font-size: clamp(0.7rem, 1.8vw, 0.85rem);
-                padding: clamp(6px, 1.2vw, 12px);
+            header {
+                padding: 1.5rem 1rem;
+                margin-bottom: 1.5rem;
             }
-
-            .base {
-                width: calc(100% + 10px);
-                height: 12px;
+            header h1 {
+                font-size: 2rem;
             }
+            main {
+                padding: 0 0.5rem 1.5rem 0.5rem;
+            }
+            main > section { /* Reduce padding for main #products section */
+                 padding: 1rem;
+                 margin-bottom: 1.5rem;
+            }
+            section#products > section { /* Reduce padding for sub-sections */
+                padding: 1rem;
+                margin-bottom: 1.5rem;
+            }
+            section h2 {
+                font-size: 1.6rem;
+                margin-bottom: 1rem;
+            }
+            section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 0.75rem;
+            }
+            .product-item {
+                padding: 1rem;
+                margin-bottom: 1rem;
+            }
+            .product-item h4 {
+                font-size: 1.1rem;
+            }
+            .product-item p {
+                font-size: 0.9rem;
+            }
+            .product-item img {
+                height: 180px; /* Adjust placeholder height */
+                line-height: 180px;
+            }
+            footer {
+                padding: 2rem 1rem;
+                margin-top: 1.5rem;
+            }
+        }
 
-            .base::before {
-                width: 25px;
-                height: 5px;
+        @media (max-width: 480px) { /* Extra small devices (portrait phones, less than 480px) */
+            header h1 {
+                font-size: 1.75rem;
+            }
+            section h2 {
+                font-size: 1.4rem;
+            }
+            section h3 {
+                font-size: 1.1rem;
+            }
+            .product-item h4 {
+                font-size: 1rem;
+            }
+            .product-item img {
+                height: 150px; /* Further adjust placeholder height */
+                line-height: 150px;
+            }
+            footer p {
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="laptop">
-        <div class="screen">
-            <div class="screen-content" id="typewriter"></div>
-        </div>
-        <div class="base"></div>
-    </div>
+    <header>
+        <h1>Sohan's Luggage Emporium</h1>
+    </header>
 
-    <script>
-        // Typewriter effect
-        function typeWriter(element, text, speed = 100, callback = null) {
-            let i = 0;
-            element.style.opacity = '0';
-            element.style.transform = 'translateY(10px)';
-            element.style.transition = 'opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    <main>
+        <section id="products">
+            <h2>Products</h2>
+
+            <section id="trolleys">
+                <h3>Trolleys</h3>
+                <div class="product-item">
+                    <h4>Voyager X Trolley</h4>
+                    <p>Durable and spacious for long trips.</p>
+                    <img src='placeholder.jpg' alt='Voyager X Trolley'>
+                </div>
+                <div class="product-item">
+                    <h4>CityHopper Carry-on</h4>
+                    <p>Compact and stylish for short stays.</p>
+                    <img src='placeholder.jpg' alt='CityHopper Carry-on'>
+                </div>
+            </section>
+
+            <section id="briefcases">
+                <h3>Briefcases</h3>
+                <div class="product-item">
+                    <h4>Executive Pro Briefcase</h4>
+                    <p>Sleek design with multiple compartments.</p>
+                    <img src='placeholder.jpg' alt='Executive Pro Briefcase'>
+                </div>
+                <div class="product-item">
+                    <h4>Classic Leather Attaché</h4>
+                    <p>Timeless style and robust construction.</p>
+                    <img src='placeholder.jpg' alt='Classic Leather Attaché'>
+                </div>
+            </section>
+
+            <section id="bags">
+                <h3>Bags</h3>
+                <div class="product-item">
+                    <h4>Adventure Duffle Bag</h4>
+                    <p>Versatile and rugged for all your adventures.</p>
+                    <img src='placeholder.jpg' alt='Adventure Duffle Bag'>
+                </div>
+                <div class="product-item">
+                    <h4>Everyday Backpack</h4>
+                    <p>Comfortable and practical for daily use.</p>
+                    <img src='placeholder.jpg' alt='Everyday Backpack'>
+                </div>
+            </section>
             
-            setTimeout(() => {
-                element.style.opacity = '1';
-                element.style.transform = 'translateY(0)';
-            }, 100);
+            <section id="kitchen-appliances">
+                <h3>Kitchen Appliances</h3>
+                <div class="product-item">
+                    <h4>QuickBake Oven</h4>
+                    <p>Efficient countertop oven for quick meals.</p>
+                    <img src='placeholder.jpg' alt='QuickBake Oven'>
+                </div>
+                <div class="product-item">
+                    <h4>InstaFlame Gas Lighter</h4>
+                    <p>Reliable and easy-to-use gas lighter.</p>
+                    <img src='placeholder.jpg' alt='InstaFlame Gas Lighter'>
+                </div>
+                <div class="product-item">
+                    <h4>Universal Appliance Spares</h4>
+                    <p>High-quality spare parts for various appliances.</p>
+                    <img src='placeholder.jpg' alt='Universal Appliance Spares'>
+                </div>
+            </section>
+        </section>
+    </main>
 
-            function type() {
-                if (i < text.length) {
-                    element.innerHTML += text.charAt(i);
-                    i++;
-                    setTimeout(type, speed);
-                } else {
-                    if (callback) callback();
-                }
-            }
-            type();
-        }
-
-        // Add cursor to element
-        function addCursor(element) {
-            const cursor = document.createElement('span');
-            cursor.className = 'cursor';
-            element.appendChild(cursor);
-        }
-
-        // Remove cursor from element
-        function removeCursor(element) {
-            const cursor = element.querySelector('.cursor');
-            if (cursor) {
-                cursor.style.opacity = '0';
-                cursor.style.transition = 'opacity 0.3s ease';
-                setTimeout(() => cursor.remove(), 300);
-            }
-        }
-
-        // Initialize typewriter
-        function startTypewriter() {
-            const typewriter = document.getElementById('typewriter');
-            const text = 'Sohan Karfa is currently building this site, check back later';
-
-            addCursor(typewriter);
-            typeWriter(typewriter, text, 100, () => {
-                setTimeout(() => {
-                    removeCursor(typewriter);
-                }, 1000);
-            });
-        }
-
-        // Start on page load
-        window.addEventListener('load', () => {
-            startTypewriter();
-        });
-    </script>
+    <footer>
+        <p>Visit our store to purchase.</p>
+        <p>123 Luggage Lane, Shopsville, ST 45678</p>
+    </footer>
 </body>
 </html>
