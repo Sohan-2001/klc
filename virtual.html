@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Karfa Luggage Centre</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap');
+
+        /* Set a fluid root font-size */
+        :root {
+            font-size: clamp(14px, 1.5vw, 16px);
+        }
 
         html, body {
             width: 100vw;
@@ -31,13 +33,15 @@
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            padding: 0 15px;
+            /* Fluid padding for the main container */
+            padding-inline: clamp(10px, 4vw, 15px);
         }
 
         /* Main Header with Shine Effect */
         .main-header {
             background: linear-gradient(135deg, #1c2526 0%, #2e3b3e 50%, #3a4f50 100%);
-            padding: 20px 0;
+            /* Fluid padding */
+            padding-block: clamp(1rem, 3vw, 1.5rem);
             text-align: left;
             position: relative;
             overflow: hidden;
@@ -61,21 +65,15 @@
 
         .main-header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            /* Fluid font size using clamp() - reduced for mobile */
+            font-size: clamp(1.2rem, 4vw, 3rem);
             font-weight: 700;
             color: #c5a880;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: clamp(1px, 0.5vw, 2px);
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 1;
-        }
-
-        .main-header p {
-            color: #d9d9d9;
-            font-size: 1.1rem;
-            margin-top: 5px;
-            font-weight: 300;
         }
 
         /* Categories as Navbar */
@@ -109,7 +107,8 @@
         .category-card {
             flex: 1;
             text-align: center;
-            padding: 12px 18px;
+            /* Fluid padding */
+            padding: clamp(0.5rem, 2vw, 0.75rem) clamp(0.5rem, 2vw, 1.125rem);
             transition: all 0.3s ease;
             cursor: pointer;
             background: transparent;
@@ -118,7 +117,6 @@
             touch-action: manipulation;
             color: #d9d9d9;
             font-weight: 500;
-            font-size: 0.9rem;
         }
 
         .category-card:last-child {
@@ -132,85 +130,23 @@
         }
 
         .category-icon {
-            font-size: 1.5rem;
+            /* Fluid icon size */
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
             margin-bottom: 0.3rem;
             display: block;
         }
 
         .category-card h4 {
             font-family: 'Playfair Display', serif;
-            font-size: 0.9rem;
+            /* Fluid font size for category titles */
+            font-size: clamp(0.7rem, 2.5vw, 0.9rem);
             font-weight: 600;
         }
-
-        /* Banner */
-        .banner {
-            background: linear-gradient(135deg, #1c2526 0%, #2e3b3e 50%, #3a4f50 100%);
-            padding: 3rem 0;
-            color: #d9d9d9;
-            text-align: left;
-            position: relative;
-        }
-
-        .banner::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.05"/><circle cx="50" cy="10" r="1" fill="%23ffffff" opacity="0.03"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
-        }
-
-        .banner-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .banner h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 0.8rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .banner p {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-
-        .banner-highlight {
-            color: #c5a880;
-        }
-
-        .visit-notice {
-            background: linear-gradient(135deg, #2e3b3e, #3a4f50);
-            border: 2px solid #c5a880;
-            border-radius: 12px;
-            padding: 1.5rem;
-            margin: 1.5rem auto;
-            max-width: 90%;
-            color: #d9d9d9;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .visit-notice h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
-            color: #c5a880;
-        }
-
-        .visit-notice p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
+        
         /* Products Grid */
         .products-section {
-            background: linear-gradient(135deg, #1c2526 0%, #2e3b3e 100%);
-            padding: 3rem 0;
+            /* Fluid section padding */
+            padding-block: clamp(2rem, 8vw, 3rem);
         }
 
         .section-header {
@@ -220,7 +156,8 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2rem;
+            /* Fluid section title font size - reduced for mobile */
+            font-size: clamp(1.1rem, 4vw, 2.5rem);
             color: #f5f5f5;
             font-weight: 600;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
@@ -237,9 +174,13 @@
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-            border: 2px solid #4a5e61;
-            padding: 1.5rem;
+            border: 2px solid #4a5e61; /* Using px for borders is best practice */
+            /* Reduced fluid card padding for larger images */
+            padding: clamp(0.5rem, 2vw, 1.5rem);
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .product-card.highlight {
@@ -249,15 +190,31 @@
             background: linear-gradient(135deg, #4a5e61 0%, #3a4f50 100%);
         }
 
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.1rem, 3vw, 1.2rem);
+            font-weight: 600;
+            color: #f5f5f5;
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 100%;
+        }
+
         .product-images {
             display: flex;
-            justify-content: space-around;
-            margin-bottom: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            width: 100%;
         }
 
         .product-image {
-            height: 140px;
-            width: 140px;
+            /* Images will take up available space within the flex container */
+            flex: 1;
+            max-width: clamp(120px, 25vw, 200px);
+            min-width: 100px;
+            aspect-ratio: 1 / 1; /* Maintain square shape */
             border-radius: 8px;
             overflow: hidden;
             display: flex;
@@ -273,29 +230,18 @@
             display: block;
         }
 
-        .product-info {
-            text-align: left;
-        }
-
-        .product-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #f5f5f5;
-            margin-bottom: 0.8rem;
-        }
-
         .more-text {
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             color: #c5a880;
             font-weight: 500;
+            text-align: center;
+            width: 100%;
         }
 
         /* Store Info */
         .store-info {
-            background: linear-gradient(135deg, #1c2526 0%, #2e3b3e 50%, #3a4f50 100%);
             color: #d9d9d9;
-            padding: 3rem 0;
+            padding-block: clamp(2rem, 8vw, 3rem);
         }
 
         .info-grid {
@@ -308,9 +254,10 @@
         .info-card {
             background: linear-gradient(135deg, #2e3b3e, #3a4f50);
             border-radius: 15px;
-            padding: 2rem;
-            text-align: left;
-            border: 2px solid #c5a880;
+            /* Fluid padding */
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            text-align: center;
+            border: 2px solid #c5a880; /* px is best for borders */
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
         }
@@ -321,20 +268,20 @@
         }
 
         .info-icon {
-            font-size: 2.5rem;
+            font-size: clamp(2.5rem, 7vw, 3rem);
             margin-bottom: 1rem;
             color: #c5a880;
         }
 
         .info-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             margin-bottom: 0.8rem;
             color: #d9d9d9;
         }
 
         .info-card p {
-            font-size: 0.9rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
             opacity: 0.9;
         }
 
@@ -342,8 +289,8 @@
         .footer {
             background: linear-gradient(135deg, #2e3b3e 0%, #3a4f50 100%);
             color: #d9d9d9;
-            padding: 3rem 0 1.5rem;
-            padding-bottom: 8rem;
+            padding-top: clamp(2rem, 8vw, 3rem);
+            padding-bottom: 8rem; /* Keep space for bottom nav */
         }
 
         .footer-content {
@@ -361,14 +308,14 @@
             font-family: 'Playfair Display', serif;
             color: #c5a880;
             margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             font-weight: 600;
         }
 
         .footer-section p, .footer-section li {
             color: #b0b7b8;
             line-height: 1.6;
-            font-size: 0.9rem;
+            font-size: clamp(0.9rem, 2.5vw, 1.1rem);
         }
 
         .footer-section ul {
@@ -390,129 +337,54 @@
             padding-top: 1.5rem;
             text-align: left;
             color: #b0b7b8;
-            font-size: 0.9rem;
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
         }
 
-        /* Desktop Responsiveness */
-        @media (min-width: 1100px) {
-            .main-header h1 { font-size: 3rem; }
-            .main-header p { font-size: 1rem; }
-            .category-card { padding: 15px 20px; font-size: 1rem; }
-            .category-icon { font-size: 2rem; }
-            .category-card h4 { font-size: 1rem; }
-            .banner h1 { font-size: 2rem; }
-            .banner p { font-size: 1rem; }
-            .visit-notice { padding: 1rem; max-width: 600px; }
-            .visit-notice h3 { font-size: 1.3rem; }
-            .visit-notice p { font-size: 1.1rem; }
-            .section-title { font-size: 2.5rem; }
-            .products-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-            .product-image { height: 170px; width: 170px; }
-            .info-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2.5rem; }
-            .info-card { padding: 2.5rem; }
-            .info-icon { font-size: 3rem; }
-            .info-card h3 { font-size: 1.3rem; }
-            .info-card p { font-size: 1.1rem; }
-            .footer-content { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 3rem; }
-            .footer-section h3 { font-size: 1.3rem; }
-            .footer-section p, .footer-section li { font-size: 1.1rem; }
-            .footer-bottom { font-size: 1.1rem; }
+        /* Media queries are still useful for layout changes */
+        @media (min-width: 500px) {
+            .products-grid, .info-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            }
+            .footer-content {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+             .product-images {
+                flex-direction: row;
+            }
+            .info-card {
+                text-align: left;
+            }
         }
-
-        /* Tablets & small laptops (≥768 px — <1100 px) */
-        @media (min-width: 768px) and (max-width: 1099px) {
-            .products-grid { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-            .product-image { width: 150px; height: 150px; }
-            .category-card { padding: 10px 15px; }
-            .category-icon { font-size: 1.8rem; }
-            .category-card h4 { font-size: 0.9rem; }
-        }
-
-        /* Mobiles & phablets (< 768 px) - EDITED FOR NEW REQUESTS */
-        @media (max-width: 767px) {
-            /* NEW: Make header a single line */
-            .main-header { padding: 10px 0; }
-            .main-header .container {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 15px;
-            }
-            .main-header h1 {
-                font-size: 1.1rem;
-                letter-spacing: 1px;
-                text-shadow: none;
-            }
-            .main-header p {
-                font-size: 0.65rem;
-                margin-top: 0;
-                line-height: 1.2;
-                font-weight: 400;
-                flex-shrink: 0;
-            }
-
-            .banner h1 { font-size: 1.5rem; }
-            .section-title { font-size: 1.5rem; }
-
-            .category-grid { flex-wrap: wrap; gap: 0; }
-            .category-card { padding: 8px 10px; font-size: 0.75rem; flex-basis: 33.33%; }
-            .category-icon { font-size: 1.4rem; margin-bottom: 0.2rem; }
-            .category-card h4 { font-size: 0.75rem; line-height: 1.2; }
-            
-            .products-section { padding: 2rem 0; }
-
-            /* NEW: Reduce product card size */
-            .product-card {
-                padding: 0.8rem; /* Reduced padding */
-            }
+        
+        @media (max-width: 499px) {
             .product-images {
-                flex-direction: column;
+                flex-direction: row;
                 align-items: center;
-                gap: 0.75rem;
-                margin-bottom: 1rem; /* Reduced margin */
+                gap: clamp(0.5rem, 2vw, 1rem);
             }
+            
             .product-image {
-                width: 80%;
-                max-width: 200px; /* Reduced image width */
-                height: auto;
-            }
-            .product-title {
-                font-size: 1.1rem; /* Reduced font size */
-                margin-bottom: 0.5rem; /* Reduced margin */
-            }
-            .more-text {
-                font-size: 0.9rem; /* Reduced font size */
+                max-width: clamp(110px, 30vw, 150px);
+                min-width: 90px;
             }
             
-            .info-card { padding: 1.5rem; }
-            .footer-content { gap: 1.5rem; }
-            .footer-section h3 { font-size: 1rem; }
-            .footer-section p, .footer-section li { font-size: 0.8rem; }
-            .footer-bottom { font-size: 0.8rem; }
+            .category-grid {
+                flex-wrap: wrap;
+            }
+            .category-card {
+                flex-basis: 33.33%;
+            }
         }
-
-        /* Extra-small devices (< 480 px) */
-        @media (max-width: 479px) {
-            .container { padding: 0 10px; }
-            
-            .main-header h1 { font-size: 0.9rem; }
-            .main-header p { font-size: 0.6rem; }
-            
-            .category-card { padding: 6px 8px; }
-            .category-icon { font-size: 1.2rem; }
-            .category-card h4 { font-size: 0.65rem; }
-            
-            .visit-notice { padding: 1rem; }
-            .visit-notice h3 { font-size: 1rem; }
-            .visit-notice p { font-size: 0.8rem; }
-        }
-    </style>
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karfa Luggage Centre</title>
+    
 </head>
 <body>
     <header class="main-header" id="main-header">
         <div class="container">
             <h1>Karfa Luggage Centre</h1>
-
         </div>
     </header>
 
@@ -543,34 +415,28 @@
             </div>
             <div class="products-grid">
                 <div class="product-card" data-category="premium-trolleys">
+                    <h3 class="product-title">Premium Trolleys</h3>
                     <div class="product-images">
                         <div class="product-image"><img src="trolley.jpg" alt="Premium Trolleys"></div>
                         <div class="product-image"><img src="trolley1.jpg" alt="Premium Trolleys 2"></div>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Trolleys</h3>
-                        <p class="more-text">More available, visit store</p>
-                    </div>
+                    <p class="more-text">More available, visit store</p>
                 </div>
                 <div class="product-card" data-category="kitchen-ovens">
+                    <h3 class="product-title">Kitchen Appliances</h3>
                     <div class="product-images">
                         <div class="product-image"><img src="io1.jpg" alt="Kitchen Oven"></div>
                         <div class="product-image"><img src="gl2.jpg" alt="Kitchen Ovens 2"></div>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Kitchen Appliances</h3>
-                        <p class="more-text">More available, visit store</p>
-                    </div>
+                    <p class="more-text">More available, visit store</p>
                 </div>
                 <div class="product-card" data-category="gas-lighters">
+                    <h3 class="product-title">Wooden Furnitures</h3>
                     <div class="product-images">
                         <div class="product-image"><img src="wf1.jpg" alt="Wooden Furniture"></div>
                         <div class="product-image"><img src="wf2.jpg" alt="Wooden Furniture 2"></div>
                     </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Wooden Furnitures</h3>
-                        <p class="more-text">More available, visit store</p>
-                    </div>
+                    <p class="more-text">More available, visit store</p>
                 </div>
             </div>
         </div>
@@ -578,7 +444,7 @@
 
     <section class="store-info">
         <div class="container">
-            <h2 class="section-title" style="color: #d9d9d9; text-align: left;">Why Visit Our Premium Showroom?</h2>
+            <h2 class="section-title" style="color: #d9d9d9;">Why Visit Our Premium Showroom?</h2>
             <div class="info-grid">
                 <div class="info-card">
                     <div class="info-icon">👨‍💼</div>
@@ -619,10 +485,9 @@
                     <p>+91 93780 67540<br>
                     WhatsApp: +91 79081 82453</p>
                 </div>
-                <div class="footer-section"></div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Karfa Luggage Centre - Premium Luggage & Essentials. All rights reserved. | Visit our showroom for the best shopping experience.</p>
+                <p>© 2025 Karfa Luggage Centre. All rights reserved. | Visit our showroom for the best shopping experience.</p>
             </div>
         </div>
     </footer>
